@@ -8,13 +8,13 @@
 #define ADDK 273.15
 
 char getMeasure();
-int getTemp();
+float getTemp();
 float convert();
 int checkMeasure();
 int error();
 int checkTemp();
 void wellcome();
-float c_f();
+int calculate();
 
 int main() {	
 	char measure;
@@ -73,10 +73,10 @@ int checkMeasure(int x) {
 	return 0;
 }
 
-int getTemp() {
-	int temp;
+float getTemp() {
+	float temp;
 	printf("Type the temperature: \n");
-	scanf("%d", &temp);
+	scanf("%f", &temp);
 	//temp = checkTemp();
 	return temp;
 }
@@ -85,27 +85,26 @@ int getTemp() {
 	if ()
 }*/
 
-float convert(int x, int y) {
+float convert(int x, float y) {
 	float C, F, K;
 	switch (x)
 	{
 	case 1: //C
 		C = y;
-		K = c_f(y, 273, 1, 0);
-		F = c_f(y, 0, 9.0/5, 32);
-		printf(">>%3.2f %6.2f %9.2f<<  ", C, F, K);
+		K = calculate(y, 273, 1, 0);
+		F = calculate(y, 0, 1.8, 32);
 		result(C, F, K);
 		break;
 	case 2:  //F
 		F = y;
-		C = c_f(y, -32, 5.0/9, 0);
-		K = c_f(y, -32, 5.0/9, 273);
+		C = calculate(y, -32, 5.0/9, 0);
+		K = calculate(y, -32, 5.0/9, 273);
 		result(C, F, K);
 		break;
 	case 3:  //K
 		K = y;
-		C = c_f(y, -273, 1, 0);
-		F = c_f(y, -32, 5.0/9, 273);
+		C = calculate(y, -273, 1, 0);
+		F = calculate(y, -32, 5.0/9, 273);
 		result(C, F, K);
 		break;
 	default:
@@ -114,8 +113,9 @@ float convert(int x, int y) {
 	return 0;
 }
 
-float c_f(float input, float num, float frct, float num2) {
+int calculate(int input, int num, int frct, int num2) {
 	float answer;
+	printf("\n---I recieved: %d %d %d %d---\n", input, num, frct, num2);
 	answer = ((input + num) * (frct)) + num2;
 	return answer;
 }
@@ -152,19 +152,19 @@ float out;
 	case 1: //C
 		C = y;
 		K = y + 273.15;
-		F = c_f(x, y);
+		F = calculate(x, y);
 		printf("%3.2f %6.2f %9.2f", C, F, K);
 		break;
 	case 2:  //F
 		F = y;
-		C = c_f(x, y);
-		K = c_f(x, y) + 273.15;
+		C = calculate(x, y);
+		K = calculate(x, y) + 273.15;
 		printf("%3.2 %6.2f %9.2f", C, F, K);
 		break;
 	case 3:  //K
 		K = y;
 		C = y - 273.15;
-		F = c_f(x, y) + 32;
+		F = calculate(x, y) + 32;
 		printf("%3.2f %6.2f %9.2f", C, F, K);
 		break;
 	default:
