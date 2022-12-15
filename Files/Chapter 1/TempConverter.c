@@ -2,23 +2,19 @@
 //Goal, input a measurement and get all conversions e.g. input: 0°C | Output: 32°F & 273,15K
 //Generate table with range as input? 0°C to 100°C +1°C. returns 0°C, 1°C, 2°C, 3°C ... 100°C and with the other temps converted.
 #include <stdio.h>
-#define NBF 9.0/5
-#define FBN 5.0/9
-#define ADDF 32
-#define ADDK 273.15
 
 char getMeasure();
 float getTemp();
 float convert();
 int checkMeasure();
-int error();
 int checkTemp();
 void wellcome();
 int calculate();
+float result();
 
 int main() {	
 	char measure;
-	int temp;
+	float temp;
 
 	wellcome();
 	measure = getMeasure();
@@ -90,9 +86,11 @@ float convert(int x, float y) {
 	switch (x)
 	{
 	case 1: //C
+		printf("\n--y:%f--\n", y);
 		C = y;
-		K = calculate(y, 273, 1, 0);
-		F = calculate(y, 0, 1.8, 32);
+		K = calculate(y, -273.15, 1, 0);
+		F = calculate(y, 0, 5.0/9, 32);
+		printf("\n>>>%3.2f %6.2f %9.2f\n<<<", C, F, K);
 		result(C, F, K);
 		break;
 	case 2:  //F
@@ -113,9 +111,9 @@ float convert(int x, float y) {
 	return 0;
 }
 
-int calculate(int input, int num, int frct, int num2) {
+int calculate(float input, float num, float frct, int num2) {
 	float answer;
-	printf("\n---I recieved: %d %d %d %d---\n", input, num, frct, num2);
+	printf("\n---I recieved: %f %f %f %d---\n", input, num, frct, num2);
 	answer = ((input + num) * (frct)) + num2;
 	return answer;
 }
@@ -124,6 +122,7 @@ float result(float C, float F, float K) {
 	printf("%3.2f %6.2f %9.2f", C, F, K);
 	return 0.0;
 }
+
 /*
 (C + 0     )   × 9/5)  + 32     = F
 (K - 273.15)   × 9/5   + 32     = F
