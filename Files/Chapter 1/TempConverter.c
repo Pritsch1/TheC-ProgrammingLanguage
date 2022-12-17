@@ -9,16 +9,16 @@ float convert(int x, float y);
 int checkMeasure(int x);
 void wellcome();
 int calculate(float input, float num, float frct, float num2);
-void result(float C, float F, float K);
+void result(float C, float F, float K, float y, int x);
 void restart();
 
 int main() {	
 	char measure;
 	float temp;
 
+	temp = getTemp();
 	wellcome();
 	measure = getMeasure();
-	temp = getTemp();
 	convert(measure, temp);
 	restart();
 	return 0;
@@ -26,11 +26,8 @@ int main() {
 
 void wellcome() {
 	char degree = 248;
-	printf("Temperature converter.\n");
-	printf("Choose the temperature measurement input.\n");
-	printf("Celsius - (%cC): C\n", degree);
-	printf("Fahrenheit - (%cF): F\n", degree);
-	printf("Kelvin - (K): K\n");
+	printf("\n\nChoose the temperature measurement input.\n");
+	printf("%cC,%cF or K: ", degree, degree);
 }
 
 char getMeasure() {
@@ -38,7 +35,7 @@ char getMeasure() {
 	scanf("%c", &measure);
 	
 	//DEBUG
-	printf("\n\t\tMY INPUT IS %c ON getMeasure()\n", measure);
+	//printf("\n\t\tMY INPUT IS %c ON getMeasure()\n", measure);
 	//DEBUG
 	
 	//getchar();
@@ -50,7 +47,7 @@ int checkMeasure(int x) {
 	//---DEBUG
 	int trash;
 	trash = getchar();//getchar() alone should stay!
-	printf("\n\t\tMY INPUT IS >>%d<< ON checkMeasure(). trash\n", trash);
+	//printf("\n\t\tMY INPUT IS >>%d<< ON checkMeasure(). trash\n", trash);
 	//---DEBUG
 
 	char newx;
@@ -78,7 +75,7 @@ int checkMeasure(int x) {
 		printf("Wrong Input.\nPlease type C(Celsius), F(Fahrenheit) or K(Kelvin).\n");
 		scanf("%c", &newx);
 		//---DEBUG
-		printf("\n\t\tMY INPUT IS >>%c<< ON getMeasure() The Error part.\n", newx);
+		//printf("\n\t\tMY INPUT IS >>%c<< ON getMeasure() The Error part.\n", newx);
 		//---DEBUG
 		return newx = checkMeasure(newx);
 		break;
@@ -90,13 +87,13 @@ float getTemp() {
 	float temp;
 
 	int trash;//DELETE
-
-	printf("Type the temperature: \n");
+	printf("\n\nTemperature converter.");
+	printf("\nType the temperature: ");
 	scanf("%f", &temp);
 	trash = getchar();//DELETE trash ONLY
 
 	//--DEBUG
-	printf("\n\t\tMY INPUT IS >>%f<< ON gettemp() temp and TRASH >>%d<<\n", temp, trash);
+	//printf("\n\t\tMY INPUT IS >>%f<< ON gettemp() temp and TRASH >>%d<<\n", temp, trash);
 	//--DEBUG
 	return temp;
 }
@@ -109,19 +106,19 @@ float convert(int x, float y) {
 		C = y;
 		K = calculate(y, 273.15, 1, 0);
 		F = calculate(y, 0, 9.0 / 5, 32);
-		result(C, F, K);
+		result(C, F, K, y, x);
 		break;
 	case 2:  //F
 		F = y;
 		C = calculate(y, -32, 5.0 / 9, 0);
 		K = calculate(y, -32, 5.0 / 9, 273.15);
-		result(C, F, K);
+		result(C, F, K, y, x);
 		break;
 	case 3:  //K
 		K = y;
 		C = calculate(y, -273.15, 1, 0);
 		F = calculate(y, -273.15, 9.0 / 5, 32);
-		result(C, F, K);
+		result(C, F, K, y, x);
 		break;
 	default:
 		break;
@@ -135,8 +132,15 @@ int calculate(float input, float num, float frct, float num2) {
 	return answer;
 }
 
-void result(float C, float F, float K) {
-	printf("%3.2f %6.2f %9.2f", C, F, K);
+void result(float C, float F, float K, float y, int x) {
+	char degree = 248;
+	if (x == 1) x = 67;
+	if (x == 2) x = 70;
+	if (x == 3) x = 75;
+	printf("\n\n--------------------");
+	printf("\n%.0f%c%c is:\n\n", y, degree, x);
+	printf("%4.0f%cC %8.0f%cF %12.0fK\n", C, degree, F, degree, K);
+	printf("--------------------");
 }
 
 void restart() {
@@ -144,12 +148,12 @@ void restart() {
 
 	int trash; //delete
 
-	printf("\nGo again?\n(Y/N)\n");
+	printf("\nGo again? (Y/N): ");
 	scanf("%c", &x);
 	trash = getchar();
 
 	//--DEBUG
-	printf("\n\t\tMY INPUT IS >>%c<< ON restart() and TRASH >>%d<<\n", x, trash);
+	//printf("\n\t\tMY INPUT IS >>%c<< ON restart() and TRASH >>%d<<\n", x, trash);
 	//--DEBUG
 	if (x == 'Y' || x == 'y') {
 		main();
