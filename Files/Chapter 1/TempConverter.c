@@ -5,12 +5,12 @@
 
 char getMeasure();
 float getTemp();
-float convert();
-int checkMeasure();
-int checkTemp();
+float convert(int x, float y);
+int checkMeasure(int x);
 void wellcome();
-int calculate();
-float result();
+int calculate(float input, float num, float frct, float num2);
+void result(float C, float F, float K);
+void restart();
 
 int main() {	
 	char measure;
@@ -20,26 +20,40 @@ int main() {
 	measure = getMeasure();
 	temp = getTemp();
 	convert(measure, temp);
+	restart();
 	return 0;
 }
 
 void wellcome() {
 	char degree = 248;
 	printf("Temperature converter.\n");
-	printf("Choose the temperature measurement input.\n\n");
+	printf("Choose the temperature measurement input.\n");
 	printf("Celsius - (%cC): C\n", degree);
 	printf("Fahrenheit - (%cF): F\n", degree);
 	printf("Kelvin - (K): K\n");
 }
 
 char getMeasure() {
-	char measure;	
-	measure = getchar();
-	measure = checkMeasure(measure);
-	return measure;
+	char measure;
+	scanf("%c", &measure);
+	
+	//DEBUG
+	printf("\n\t\tMY INPUT IS %c ON getMeasure()\n", measure);
+	//DEBUG
+	
+	//getchar();
+	return measure = checkMeasure(measure);
 }
 
 int checkMeasure(int x) {
+
+	//---DEBUG
+	int trash;
+	trash = getchar();//getchar() alone should stay!
+	printf("\n\t\tMY INPUT IS >>%d<< ON checkMeasure(). trash\n", trash);
+	//---DEBUG
+
+	char newx;
 	switch (x)
 	{
 	case 67:
@@ -61,8 +75,11 @@ int checkMeasure(int x) {
 		return 3;
 		break;
 	default:
-		char newx;
-		newx = getchar();		
+		printf("Wrong Input.\nPlease type C(Celsius), F(Fahrenheit) or K(Kelvin).\n");
+		scanf("%c", &newx);
+		//---DEBUG
+		printf("\n\t\tMY INPUT IS >>%c<< ON getMeasure() The Error part.\n", newx);
+		//---DEBUG
 		return newx = checkMeasure(newx);
 		break;
 	}
@@ -71,38 +88,39 @@ int checkMeasure(int x) {
 
 float getTemp() {
 	float temp;
+
+	int trash;//DELETE
+
 	printf("Type the temperature: \n");
 	scanf("%f", &temp);
-	//temp = checkTemp();
+	trash = getchar();//DELETE trash ONLY
+
+	//--DEBUG
+	printf("\n\t\tMY INPUT IS >>%f<< ON gettemp() temp and TRASH >>%d<<\n", temp, trash);
+	//--DEBUG
 	return temp;
 }
-
-/*int checkTemp() {
-	if ()
-}*/
 
 float convert(int x, float y) {
 	float C, F, K;
 	switch (x)
 	{
 	case 1: //C
-		printf("\n--y:%f--\n", y);
 		C = y;
-		K = calculate(y, -273.15, 1, 0);
-		F = calculate(y, 0, 5.0/9, 32);
-		printf("\n>>>%3.2f %6.2f %9.2f\n<<<", C, F, K);
+		K = calculate(y, 273.15, 1, 0);
+		F = calculate(y, 0, 9.0 / 5, 32);
 		result(C, F, K);
 		break;
 	case 2:  //F
 		F = y;
-		C = calculate(y, -32, 5.0/9, 0);
-		K = calculate(y, -32, 5.0/9, 273);
+		C = calculate(y, -32, 5.0 / 9, 0);
+		K = calculate(y, -32, 5.0 / 9, 273.15);
 		result(C, F, K);
 		break;
 	case 3:  //K
 		K = y;
-		C = calculate(y, -273, 1, 0);
-		F = calculate(y, -32, 5.0/9, 273);
+		C = calculate(y, -273.15, 1, 0);
+		F = calculate(y, -273.15, 9.0 / 5, 32);
 		result(C, F, K);
 		break;
 	default:
@@ -111,16 +129,31 @@ float convert(int x, float y) {
 	return 0;
 }
 
-int calculate(float input, float num, float frct, int num2) {
+int calculate(float input, float num, float frct, float num2) {
 	float answer;
-	printf("\n---I recieved: %f %f %f %d---\n", input, num, frct, num2);
 	answer = ((input + num) * (frct)) + num2;
 	return answer;
 }
 
-float result(float C, float F, float K) {
+void result(float C, float F, float K) {
 	printf("%3.2f %6.2f %9.2f", C, F, K);
-	return 0.0;
+}
+
+void restart() {
+	char x;
+
+	int trash; //delete
+
+	printf("\nGo again?\n(Y/N)\n");
+	scanf("%c", &x);
+	trash = getchar();
+
+	//--DEBUG
+	printf("\n\t\tMY INPUT IS >>%c<< ON restart() and TRASH >>%d<<\n", x, trash);
+	//--DEBUG
+	if (x == 'Y' || x == 'y') {
+		main();
+	}
 }
 
 /*
@@ -130,44 +163,4 @@ float result(float C, float F, float K) {
 (C + 273.15)   x 1/1   + 0      = K
 (F - 32    )   × 5/9   + 0      = C
 (F - 32    )   × 5/9   + 273.15 = K
-*/
-
-/*
-float out;
-	if (x == 1 || x == 3) {
-		int z = 0;
-		if (x == 3) { z = -273.15; }
-		out = (y + z * (9.0 / 5)) + 32; //F = c * 9/5 + 32
-	}
-	if (x == 2) {
-		out = (y - 32) * (5.0 / 9); //c = (y - 32) * (5 / 9)
-	}
-	return out;
-
-	
-	float C, F, K;
-	switch (x)
-	{
-	case 1: //C
-		C = y;
-		K = y + 273.15;
-		F = calculate(x, y);
-		printf("%3.2f %6.2f %9.2f", C, F, K);
-		break;
-	case 2:  //F
-		F = y;
-		C = calculate(x, y);
-		K = calculate(x, y) + 273.15;
-		printf("%3.2 %6.2f %9.2f", C, F, K);
-		break;
-	case 3:  //K
-		K = y;
-		C = y - 273.15;
-		F = calculate(x, y) + 32;
-		printf("%3.2f %6.2f %9.2f", C, F, K);
-		break;
-	default:
-		break;
-	}
-	return 0;
 */
