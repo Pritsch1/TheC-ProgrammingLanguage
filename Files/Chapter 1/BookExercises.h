@@ -2,6 +2,7 @@
 #define BOOKEXERCISES_H
 //BookExercises.c-------------
 int input();//Replace with fgets()!!
+int newlines(int x);
 void welcome();
 void start();
 void index();

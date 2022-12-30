@@ -6,6 +6,7 @@
 #include "BookExercises.h"
 
 void tempConverter() {
+	newlines(0);
 	char measure;
 	float temp;
 	
@@ -13,6 +14,7 @@ void tempConverter() {
 	wellcome();
 	measure = getMeasure();
 	convert(measure, temp);
+	newlines(1);
 	restart();
 }
 
@@ -79,7 +81,7 @@ float getTemp() {
 	float temp;
 
 	int trash;//DELETE
-	printf("\n\nTemperature converter.");
+	printf("Temperature converter.");
 	printf("\nType the temperature: ");
 	scanf("%f", &temp);
 	trash = getchar();//DELETE trash ONLY

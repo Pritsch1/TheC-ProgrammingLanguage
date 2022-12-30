@@ -3,11 +3,15 @@
 #include "BookExercises.h"
 
 void exercise1_1() {
-	printf("Hello, World! :)\n");
+	newlines(0);
+	printf("Hello, World! :)");
+	newlines(1);
 }
 
 void exercise1_2() {
-	printf("Hello, \\yWorld! :)\n");
+	newlines(0);
+	printf("Hello, \\yWorld! :)");
+	newlines(1);
 }
 
 /*void hello() {

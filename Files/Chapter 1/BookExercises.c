@@ -14,6 +14,12 @@ int input() { //Replace with fgets()!!!!!!!!!!!!!!!!
 	return x;
 }
 
+int newlines(int x) {
+	if (x == 0) { printf("\n------Start.\n"); }
+	if (x == 1) { printf("\n------End.\n\n"); }
+	return 0;
+}
+
 //Runs once and describes the program. 
 void welcome() {
 	printf("Hello there! :)\n");
@@ -39,6 +45,7 @@ void index() {
 	switch (x)
 	{
 	case 0:
+		exit(0);
 		break;
 	case 1:
 		chapterSelectionText();
