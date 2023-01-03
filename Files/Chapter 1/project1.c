@@ -6,35 +6,35 @@
 #include "BookExercises.h"
 #include "mylib.h"
 
-void tempConverter() {
-	newlines(0);
+//Do not move
+void mainTempConverter() {
 	char measure;
 	float temp;
-	
+	printf(">>>\n");
 	temp = getTemp();
-	wellcome();
 	measure = getMeasure();
 	convert(measure, temp);
-	newlines(1);
 	restart();
+}
+//Do not move
+
+void tempConverterWellcome() {
+	printf("This exercise derived from Chapter 1. A simple temperature converter.\n");
+	printf("First type the temperature (e.g. 100), and the the measurement (e.g. C for Celcius).\n");
 }
 
 float getTemp() {
 	float temp;
-	printf("Temperature converter.");
-	printf("\nType the temperature: ");
+	printf("Type the temperature: ");
 	scanf("%f", &temp);
 	getchar();
 	return temp;
 }
 
-void wellcome() {
-	char degree = 248;
-	printf("\n\nChoose the temperature measurement input.\n");
-	printf("%cC,%cF or K: ", degree, degree);
-}
-
 char getMeasure() {
+	char degree = 248;
+	printf("\nChoose the temperature measurement input\n");
+	printf("%cC,%cF or K: ", degree, degree);
 	char measure = inputChar();
 	return measure = checkMeasure(measure);
 }
@@ -97,18 +97,18 @@ K = (F - 32    )   × 5/9   + 273.15
 void result(float C, float F, float K, float y, int x) {//y = inputed temp(int), x = inputed measure(C, F, K)
 	char degree = 248;
 	if (x == 75) { degree = 0; }
-	printf("\n\n>>>>>");	
+	printf("---------------------------\n");	
 	printf("%.0f%c%c is: ", y, degree, x);
-	if (x != 67) { printf("%.2f%cC", C, degree); }
-	if (x != 70) { printf("%.2f%cF", F, degree); }
-	if (x != 75) { printf("%.2fK", K); }
-	printf("<<<<<\n");
+	if (x != 67) { printf("\n>%.2f%cC", C, degree); }
+	if (x != 70) { printf("\n>%.2f%cF", F, degree); }
+	if (x != 75) { printf("\n>%.2fK", K); }
+	printf("\n---------------------------");
 }
 
 void restart() {
 	char x;
 	printf("\nGo again? (Y/N): ");
 	x = inputChar();
-	if (x == 'Y' || x == 'y') {	tempConverter();}
+	if (x == 'Y' || x == 'y') {	mainTempConverter();}
 }
 

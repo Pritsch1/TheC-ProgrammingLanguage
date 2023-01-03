@@ -19,7 +19,9 @@ void projectsSelection() {
 		start();
 		break;
 	case 1:
-		tempConverter();
+		newlines(0);
+		tempConverterWellcome();
+		mainTempConverter();
 		newlines(1);
 		projectsSelectionText();
 		break;

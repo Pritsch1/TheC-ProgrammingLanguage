@@ -26,8 +26,8 @@ void projectsSelection();
 //----------------------------
 
 //project1.c------------------
-void tempConverter();
-void wellcome();
+void mainTempConverter();
+void tempConverterWellcome();
 char getMeasure();
 int checkMeasure(int x);
 float getTemp();
