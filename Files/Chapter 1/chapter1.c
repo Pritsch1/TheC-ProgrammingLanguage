@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BookExercises.h"
+#include "mylib.h"
 
 void exercise1_1() {
 	newlines(0);

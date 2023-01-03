@@ -1,23 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BookExercises.h"
-//
+#include "mylib.h"
+
 void main() {
 	welcome();
 	start();
-}
-
-int input() { //Replace with fgets()!!!!!!!!!!!!!!!!
-	int x = 0;
-	scanf("%d", &x);
-	getchar();
-	return x;
-}
-
-int newlines(int x) {
-	if (x == 0) { printf("\n------Start.\n"); }
-	if (x == 1) { printf("\n------End.\n\n"); }
-	return 0;
 }
 
 //Runs once and describes the program. 
@@ -41,11 +29,12 @@ void start() {												//
 }
 
 void index() {
-	int x = input();
+	int x = inputInt();
 	switch (x)
 	{
 	case 0:
-		exit(0);
+		quit();
+		start();
 		break;
 	case 1:
 		chapterSelectionText();
@@ -82,7 +71,7 @@ void chapterSelectionText() {											//
 }
 
 void chapterSelection() {
-	int x = input();
+	int x = inputInt();
 	switch (x)
 	{
 	case 0:

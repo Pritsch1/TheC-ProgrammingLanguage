@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BookExercises.h"
+#include "mylib.h"
 
 void projectsSelectionText() {
 	printf(" 0 - Go Back\n");
@@ -11,7 +12,7 @@ void projectsSelectionText() {
 }
 
 void projectsSelection() {
-	int x = input();
+	int x = inputInt();
 	switch (x)
 	{
 	case 0:

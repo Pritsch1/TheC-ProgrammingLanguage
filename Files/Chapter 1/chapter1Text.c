@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "BookExercises.h"
+#include "mylib.h"
 
 void chapter1Text() {
 	printf("Choose The Sub Chapter:\n");
@@ -21,7 +22,7 @@ void chapter1Text() {
 }
 
 void chapter1() {
-	int x = input();
+	int x = inputInt();
 	switch (x)
 	{
 	case 0:
@@ -77,7 +78,7 @@ void chapter1_1Text() {
 }
 
 void chapter1_1() {
-	int x = input();
+	int x = inputInt();
 	switch (x)
 	{
 	case 0:
