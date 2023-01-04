@@ -3,7 +3,7 @@
 #include "BookExercises.h"
 #include "mylib.h"
 
-void main() {
+void main() {//
 	welcome();
 	start();
 }
