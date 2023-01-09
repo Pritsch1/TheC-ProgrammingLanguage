@@ -4,6 +4,108 @@
 #include "mylib.h"
 #include "chapter1.h"
 
+//Chapter 1 Selection
+void chapter1Text() {
+	printf("Choose The Sub Chapter:\n");
+	printf(" 0 - Go Back\n");
+	printf(" 1 - 1.1  Getting Started\n");
+	printf(" 2 - 1.2  Variables and Arithimetic Expresions\n");
+	printf(" 3 - 1.3  The For Statemente\n");
+	printf(" 4 - 1.4  Symbolic Constants\n");
+	printf(" 5 - 1.5  Character Inpit and Output\n");
+	printf(" 6 - 1.6  ...\n");
+	printf(" 7 - 1.7  ...\n");
+	printf(" 8 - 1.8  ...\n");
+	printf(" 9 - 1.9  ...\n");
+	printf("10 - 1.10 ...\n");
+	printf("11 - Exit\n\n");
+}
+
+void chapter1() {
+	int x;
+	for (x = 0; x != -1;) {
+		chapter1Text();
+		x = inputInt();
+		switch (x)
+		{
+		case 0:
+			x = -1;
+			break;
+		case 1:
+			chapter1_1();
+			break;
+		case 2:
+			//chapter1_2();
+			break;
+		case 3:
+			//chapter1_3();
+			break;
+		case 4:
+			//chapter1_4();
+			break;
+		case 5:
+			//chapter1_5();
+			break;
+		case 6:
+			//chapter1_6();
+			break;
+		case 7:
+			//chapter1_7();
+			break;
+		case 8:
+			//chapter1_8();
+			break;
+		case 9:
+			//chapter1_9();
+			break;
+		case 10:
+			//chapter1_10();
+			break;
+		case 11:
+			quit();
+			break;
+		default:
+			printf("Item not found. Please type again.\n");
+			break;
+		}
+	}	
+}
+
+void chapter1_1Text() {
+	printf("0 - Go Back\n");
+	printf("1 - Exercise 1-1.\n");
+	printf("2 - Exercise 1-2.\n");
+	printf("3 - Exit\n\n");
+}
+
+void chapter1_1() {
+	int x;
+	for (x = 0; x != -1;) {
+		chapter1_1Text();
+		x = inputInt();
+		switch (x)
+		{
+		case 0:
+			x = -1;
+			break;
+		case 1:
+			exercise1_1();
+			break;
+		case 2:
+			exercise1_2();
+			break;
+		case 3:
+			quit();
+			break;
+		default:
+			printf("Item not found. Please type again.\n");
+			break;
+		}
+	}
+	
+}
+//
+
 void exercise1_1() {
 	newlines(0);
 	printf("Hello, World! :)");

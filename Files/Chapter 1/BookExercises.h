@@ -10,11 +10,6 @@ void chapterSelection();
 
 void projectsSelectionText();
 void projectsSelection();
-
-void chapter1Text();
-void chapter1();
-void chapter1_1Text();
-void chapter1_1();
 #endif
 
 
