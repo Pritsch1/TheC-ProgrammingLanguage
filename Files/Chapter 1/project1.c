@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "BookExercises.h"
 #include "mylib.h"
+#include "project1.h"
 
 //Do not move
 void mainTempConverter() {

@@ -26,7 +26,7 @@ int newlines(int x) {
 int quit() {
 	char x = 0;
 	printf("\nQuit? (Y/N)\n");
-	scanf("%c", &x);
+	x = inputChar();
 	if (x == 89 || x == 121) { exit(0); }
 	return 0;
 }

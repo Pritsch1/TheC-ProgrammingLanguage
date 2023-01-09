@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "BookExercises.h"
 #include "mylib.h"
+#include "chapter1.h"
 
 void exercise1_1() {
 	newlines(0);
