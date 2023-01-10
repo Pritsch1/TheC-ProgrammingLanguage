@@ -2,27 +2,35 @@
 //Goal, input a measurement and get all conversions e.g. input: 0°C | Output: 32°F & 273,15K
 //Generate table with range as input? 0°C to 100°C +1°C. returns 0°C, 1°C, 2°C, 3°C ... 100°C and with the other temps converted.
 #include <stdio.h>
-#include <stdlib.h>
 #include "BookExercises.h"
 #include "mylib.h"
 #include "project1.h"
 
 //Do not move
-void mainTempConverter() {
-	char measure;
-	float temp;
-	printf(">>>\n");
-	temp = getTemp();
-	measure = getMeasure();
-	convert(measure, temp);
-	restart();
+void tempConverter() {
+	trim(0);
+	tempConverterWellcome();
+	mainTempConverter();
+	trim(1);
 }
-//Do not move
 
 void tempConverterWellcome() {
 	printf("This exercise derived from Chapter 1. A simple temperature converter.\n");
 	printf("First type the temperature (e.g. 100), and the the measurement (e.g. C for Celcius).\n");
 }
+
+void mainTempConverter() {
+	int x;
+	for (x = 0; x != -1;) {
+		char measure;
+		float temp;
+		printf(">>>\n");
+		temp = getTemp();
+		measure = getMeasure();
+		convert(measure, temp);
+		x = restart();
+	}	
+}//Do not move
 
 float getTemp() {
 	float temp;
@@ -46,9 +54,9 @@ int checkMeasure(int x) {
 	else if (x == 70 || x == 102) { return 70; }
 	else if (x == 75 || x == 107) { return 75; }
 	else {
-		printf("Wrong Input.\nPlease type C(Celsius), F(Fahrenheit) or K(Kelvin).\n");
+		printf("\nWrong Input.\nPlease type C(Celsius), F(Fahrenheit) or K(Kelvin).\n");
 		newx = inputChar();
-		return newx = checkMeasure(newx);
+		return checkMeasure(newx);
 	}
 	return 0;
 }
@@ -96,20 +104,11 @@ K = (F - 32    )   × 5/9   + 273.15
 */
 
 void result(float C, float F, float K, float y, int x) {//y = inputed temp(int), x = inputed measure(C, F, K)
-	char degree = 248;
-	if (x == 75) { degree = 0; }
 	printf("---------------------------\n");	
-	printf("%.0f%c%c is: ", y, degree, x);
-	if (x != 67) { printf("\n>%.2f%cC", C, degree); }
-	if (x != 70) { printf("\n>%.2f%cF", F, degree); }
+	if (x == 75) { printf("%.0f%c is: ", y, x); }
+	if (x != 75) { printf("%.0f%c%c is: ", y, 248, x); }
+	if (x != 67) { printf("\n>%.2f%cC", C, 248); }
+	if (x != 70) { printf("\n>%.2f%cF", F, 248); }
 	if (x != 75) { printf("\n>%.2fK", K); }
 	printf("\n---------------------------");
 }
-
-void restart() {
-	char x;
-	printf("\nGo again? (Y/N): ");
-	x = inputChar();
-	if (x == 'Y' || x == 'y') {	mainTempConverter();}
-}
-

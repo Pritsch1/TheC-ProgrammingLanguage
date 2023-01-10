@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "BookExercises.h"
 #include "mylib.h"
 #include "chapter1.h"
@@ -10,13 +9,12 @@ void main() {
 	start();
 }
 
-//Runs once and describes the program. 
 void welcome() {
 	printf("Hello there! :)\n");
-	printf("This is a show case of the chapterSelection compleated from the book, ");
+	printf("This is a show case of the exercises compleated from the book, ");
 	printf("\"The C Programming Language\" by ");
 	printf("Brian W. Kernighan and Dennis M. Ritchie.\n");
-	printf("Along with the book chapterSelection there will also be some ");
+	printf("Along with the book exercises there will also be some ");
 	printf("side projects and simple programs to test out language functionalities.\n");
 	printf("Navigate trough the index bellow.\n\n\n");
 }
@@ -24,9 +22,9 @@ void welcome() {
 //Main index------------------------------------------------//
 void index() {
 	printf("Index:\n");
-	printf("0 - Exit\n");
-	printf("1 - Chapter Selection\n");
-	printf("2 - Side Projects\n\n");
+	printf(" 0 - Exit\n");
+	printf(" 1 - Chapter Selection\n");
+	printf(" 2 - Side Projects\n");
 }
 
 void start() {
@@ -42,10 +40,10 @@ void start() {
 			chapterSelection();
 			break;
 		case 2:
-			projectsSelectionText();
+			projectsSelection();
 			break;
 		default:
-			printf("Item not found. Please type again.\n");
+			error404();
 			break;
 		}
 	}
@@ -83,30 +81,40 @@ void chapterSelection() {
 			chapter1();
 			break;
 		case 2:
+			//chapter2();
 			break;
 		case 3:
+			//chapter3();
 			break;
 		case 4:
+			//chapter4();
 			break;
 		case 5:
+			//chapter5();
 			break;
 		case 6:
+			//chapter6();
 			break;
 		case 7:
+			//chapter7();
 			break;
 		case 8:
+			//chapter8();
 			break;
 		case 9:
+			//chapterApdxA();
 			break;
 		case 10:
+			//chapterApdxB();
 			break;
 		case 11:
+			//chapterApdxC();
 			break;
 		case 12:
 			quit();
 			break;
 		default:
-			printf("Item not found. Please type again.\n");
+			error404();
 			break;
 		}
 	}	
@@ -117,30 +125,27 @@ void projectsSelectionText() {
 	printf(" 0 - Go Back\n");
 	printf(" 1 - Temperature Converter\n");
 	printf(" 2 - Exit\n");
-
-	projectsSelection();
 }
 
 void projectsSelection() {
-	int x = inputInt();
-	switch (x)
-	{
-	case 0:
-		start();
-		break;
-	case 1:
-		newlines(0);
-		tempConverterWellcome();
-		mainTempConverter();
-		newlines(1);
+	int x;
+	for (x = 0; x != -1;) {
 		projectsSelectionText();
-		break;
-	case 2:
-		exit(0);
-		break;
-	default:
-		printf("Item not found. Please type again.\n");
-		projectsSelectionText();
-		break;
-	}
+		x = inputInt();
+		switch (x)
+		{
+		case 0:
+			x = -1;
+			break;
+		case 1:
+			tempConverter();
+			break;
+		case 2://QUIIIIIT
+			quit();
+			break;
+		default:
+			error404();
+			break;
+		}
+	}	
 }//Projects Selection----------------------------------------------------//

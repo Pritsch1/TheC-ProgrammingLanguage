@@ -2,7 +2,9 @@
 #define MYLIB_H
 int inputInt();
 char inputChar();
-int newlines(int x);
+int trim(int x);
 int quit();
+int restart();
+void error404();
 #endif
 
